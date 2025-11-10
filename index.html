@@ -9,6 +9,12 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.5.25/dist/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class'
+  }
+</script>
   <style>
     :root {
       --navy: #001f3f;
@@ -366,7 +372,7 @@
       <!-- Seharusnya seperti ini -->
       <div class="mt-4 flex items-center gap-1 text-xs text-gray-500">
         <span class="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-        <span>Last Updated: <span id="lastUpdate">-</span></span>
+        <span>Online: <span id="lastUpdate">-</span></span>
       </div>
 
       <script>
@@ -506,27 +512,27 @@
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-4">
                   <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
                     <div class="text-xs text-gray-600 mb-1">FSO Aberkha</div>
-                    <div class="text-lg font-bold text-blue-600">$1.7M</div>
+                    <div class="text-lg font-bold text-blue-600">$1.7 Juta USD</div>
                     <div class="text-xs text-green-600 font-semibold">Top P/L</div>
                   </div>
                   <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
                     <div class="text-xs text-gray-600 mb-1">LBO</div>
-                    <div class="text-lg font-bold text-green-600">$1.2M</div>
+                    <div class="text-lg font-bold text-green-600">$1.2 Juta USD</div>
                     <div class="text-xs text-green-600 font-semibold">Strong</div>
                   </div>
                   <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
                     <div class="text-xs text-gray-600 mb-1">Paraxylene</div>
-                    <div class="text-lg font-bold text-purple-600">$0.7M</div>
+                    <div class="text-lg font-bold text-purple-600">$0.7 Juta USD</div>
                     <div class="text-xs text-green-600 font-semibold">Good</div>
                   </div>
                   <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-3 border border-amber-200">
                     <div class="text-xs text-gray-600 mb-1">Other</div>
-                    <div class="text-lg font-bold text-amber-600">$0.6M</div>
+                    <div class="text-lg font-bold text-amber-600">$0.6 Juta USD</div>
                     <div class="text-xs text-green-600 font-semibold">Stable</div>
                   </div>
                   <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
                     <div class="text-xs text-gray-600 mb-1">FAME</div>
-                    <div class="text-lg font-bold text-red-600">-$0.4M</div>
+                    <div class="text-lg font-bold text-red-600">$0.4 Juta USD</div>
                     <div class="text-xs text-red-600 font-semibold">Alert</div>
                   </div>
                 </div>
@@ -535,8 +541,8 @@
 
                 <div
                   class="text-xs text-gray-500 mt-3 p-3 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg border border-red-100">
-                  <span class="font-semibold text-red-600">⚠️ Perhatian:</span> FAME mencatat P/L negatif ($-0.4M). FSO
-                  Aberkha & Fastron menjadi kontributor P/L positif terbesar ($1.7M).
+                  <span class="font-semibold text-red-600">⚠️ Perhatian:</span> FAME mencatat P/L negatif ($-0.4). FSO
+                  Aberkha & Fastron menjadi kontributor P/L positif terbesar ($1.7).
                 </div>
               </div>
             </div>
@@ -924,9 +930,9 @@
                   <thead class="bg-gray-50">
                     <tr>
                       <th class="px-3 py-2 text-left">Produk</th>
-                      <th class="px-3 py-2 text-right">Revenue (M)</th>
-                      <th class="px-3 py-2 text-right">Cost (M)</th>
-                      <th class="px-3 py-2 text-right">P/L (M)</th>
+                      <th class="px-3 py-2 text-right">Revenue (Juta USD)</th>
+                      <th class="px-3 py-2 text-right">Cost (Juta USD)</th>
+                      <th class="px-3 py-2 text-right">P/L (Juta USD)</th>
                     </tr>
                   </thead>
                   <tbody id="plProductTableBody" class="bg-white divide-y divide-gray-100"></tbody>
@@ -1696,7 +1702,7 @@
                     datasets: [
                       { type: 'bar', label: 'RKAP YTD Sept 2025', data: DATA.plSummary.rkap, backgroundColor: ['rgba(0,31,63,0.85)', 'rgba(0,31,63,0.6)', 'rgba(0,31,63,0.4)'], borderRadius: 6 },
                       { type: 'bar', label: 'Realisasi YTD Sept 2025', data: DATA.plSummary.real, backgroundColor: ['rgba(183,28,28,0.85)', 'rgba(183,28,28,0.6)', 'rgba(183,28,28,0.4)'], borderRadius: 6 },
-                      { type: 'line', label: 'P/L (Trend Line)', data: DATA.plSummary.real, borderColor: '#0ea5a4', borderWidth: 2.5, tension: 0.35, pointRadius: 4, pointHoverRadius: 6, yAxisID: 'y', fill: false, order: 3 }
+                      { type: 'bar', label: 'P/L', data: DATA.plSummary.real, borderColor: '#0ea5a4', borderWidth: 2.5, tension: 0.35, pointRadius: 4, pointHoverRadius: 6, yAxisID: 'y', fill: false, order: 3 }
                     ]
                   },
                   options: {
@@ -1737,9 +1743,9 @@
                   data: {
                     labels: labels,
                     datasets: [
-                      { label: 'P/L Realisasi (M)', data: pl, backgroundColor: pl.map(v => v >= 0 ? 'rgba(59,130,246,0.9)' : 'rgba(239,68,68,0.9)'), order: 1, borderRadius: 6 },
-                      { label: 'Revenue (M)', data: revenue, backgroundColor: 'rgba(16,163,74,0.45)', stack: 'stack1', order: 2, borderRadius: 6 },
-                      { label: 'Cost (M)', data: cost.map(v => -v), backgroundColor: 'rgba(239,68,68,0.38)', stack: 'stack1', order: 2, borderRadius: 6 }
+                      { label: 'P/L Realisasi', data: pl, backgroundColor: pl.map(v => v >= 0 ? 'rgba(59,130,246,0.9)' : 'rgba(239,68,68,0.9)'), order: 1, borderRadius: 6 },
+                      { label: 'Revenue', data: revenue, backgroundColor: 'rgba(16,163,74,0.45)', stack: 'stack1', order: 2, borderRadius: 6 },
+                      { label: 'Cost', data: cost.map(v => -v), backgroundColor: 'rgba(239,68,68,0.38)', stack: 'stack1', order: 2, borderRadius: 6 }
                     ]
                   },
                   options: {
@@ -2039,7 +2045,7 @@
                   c.classList.add('hidden');
                   c.style.display = 'none';
                 });
-                
+
                 // Reset ALL buttons (including Commercial toggle and submenu items)
                 document.querySelectorAll('#sidebarNav .tab-btn').forEach(btn => {
                   btn.classList.remove('active', 'bg-gray-100', 'bg-gradient-to-r', 'from-[#001f3f]/80', 'to-[#b71c1c]/80', 'text-white');
@@ -2067,7 +2073,7 @@
                   activeBtn.classList.add('active', 'bg-gray-100');
                   activeBtn.classList.remove('text-gray-700');
                 }
-                
+
                 // Handle Commercial submenu highlighting
                 if (tabId === 'pl' || tabId === 'salesfunnel') {
                   const toggle = document.getElementById('commercialToggle');
@@ -2077,14 +2083,14 @@
                   document.getElementById('commercialSubmenu').classList.remove('hidden');
                   document.querySelector('#commercialToggle svg').classList.add('rotate-180');
                 }
-                
+
                 // Handle Operation tab highlighting
                 if (tabId === 'operation') {
                   const operationBtn = document.querySelector('.tab-btn[data-tab="operation"]');
                   operationBtn.classList.add('active', 'bg-gradient-to-r', 'from-[#001f3f]/80', 'to-[#b71c1c]/80', 'text-white');
                   operationBtn.classList.remove('text-gray-700', 'bg-gray-100');
                 }
-                
+
                 // Handle Market tab highlighting
                 if (tabId === 'market') {
                   const marketBtn = document.querySelector('.tab-btn[data-tab="market"]');
@@ -2153,12 +2159,12 @@
               },
 
               updateKPIs: () => {
-                document.getElementById('cardRevenue').textContent = `${DATA.plSummary.real[0]}M`;
-                document.getElementById('cardCost').textContent = `${DATA.plSummary.real[1]}M`;
-                document.getElementById('cardPL').textContent = `${DATA.plSummary.real[2]}M`;
-                document.getElementById('profitValue').textContent = `${DATA.plSummary.real[2]}M`;
-                document.getElementById('revenueValue').textContent = `${DATA.plSummary.real[0]}M`;
-                document.getElementById('costValue').textContent = `${DATA.plSummary.real[1]}M`;
+                document.getElementById('cardRevenue').textContent = `${DATA.plSummary.real[0]}Juta USD`;
+                document.getElementById('cardCost').textContent = `${DATA.plSummary.real[1]}Juta USD`;
+                document.getElementById('cardPL').textContent = `${DATA.plSummary.real[2]}Juta USD`;
+                document.getElementById('profitValue').textContent = `${DATA.plSummary.real[2]} Juta USD`;
+                document.getElementById('revenueValue').textContent = `${DATA.plSummary.real[0]} Juta USD`;
+                document.getElementById('costValue').textContent = `${DATA.plSummary.real[1]} Juta USD`;
                 document.getElementById('plVsRkapValue').textContent = `${DATA.plSummary.plDeviation.toFixed(2)}%`;
               }
             };
